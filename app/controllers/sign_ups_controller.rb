@@ -24,8 +24,8 @@ class SignUpsController < ApplicationController
 
     respond_to do |format|
       if @sign_up.save
-        #format.html { redirect_to(:thanks, :notice => 'Sign up was successful.') }
-        redirect_to :thanks
+        format.html { render :action => "thanks", :notice => 'Sign up was successful.' }
+        #redirect_to :thanks
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @sign_up.errors, :status => :unprocessable_entity }
@@ -34,7 +34,7 @@ class SignUpsController < ApplicationController
   end
   
   def thanks
-    format.html # index.html.erb
+    #format.html # index.html.erb
   end
 
   # DELETE /sign_ups/1

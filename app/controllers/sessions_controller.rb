@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def create
     if admin = Admin.authenticate(params[:name], params[:password]) 
 	  session[:admin_id] = admin.id 
-	  redirect_to admins_url, :notice => "Logged in successfully" 
+	  redirect_to sign_ups_url, :notice => "Logged in successfully" 
 	else 
 	  flash.now[:alert] = "Invalid user/password combination"
 	  render :action => 'new'

@@ -1,8 +1,6 @@
 ComingSoon::Application.routes.draw do
   root :to => "SignUps#new"
-
-  get 'admin' => 'admin#index'
-  
+    
   controller :sessions do 
 	get 'login' => :new 
 	post 'login' => :create 
@@ -17,6 +15,8 @@ ComingSoon::Application.routes.draw do
   resources :sign_ups
   
   match "thanks" => "signUp#thanks"
+  
+  get 'admin' => 'admin#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
