@@ -1,4 +1,6 @@
 ComingSoon::Application.routes.draw do
+  root :to => "SignUps#new"
+
   get 'admin' => 'admin#index'
   
   controller :sessions do 
@@ -10,8 +12,6 @@ ComingSoon::Application.routes.draw do
   resources :admins
 
   resources :sign_ups
-
-  root :to => "SignUp#index"
   
   match "thanks" => "signUp#thanks"
   
