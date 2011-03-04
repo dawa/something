@@ -1,5 +1,5 @@
 class SignUpsController < ApplicationController
-  skip_before_filter :authorize
+  skip_before_filter :authorize, :only => [ :new, :create, :thanks ]
   
   # GET /sign_ups
   # GET /sign_ups.xml

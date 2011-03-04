@@ -9,6 +9,9 @@ ComingSoon::Application.routes.draw do
 	delete 'logout' => :destroy 
   end 
 
+  match '/login' => "sessions#new", :as => "login"
+  match '/logout' => "sessions#destroy", :as => "logout"
+  
   resources :admins
 
   resources :sign_ups
