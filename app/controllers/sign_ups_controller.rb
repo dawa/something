@@ -1,4 +1,6 @@
 class SignUpsController < ApplicationController
+  skip_before_filter :authorize
+  
   # GET /sign_ups
   # GET /sign_ups.xml
   def index
@@ -22,13 +24,17 @@ class SignUpsController < ApplicationController
 
     respond_to do |format|
       if @sign_up.save
-        format.html { redirect_to(@sign_ups_url, :notice => 'Sign up was successful.') }
-        #redirect_to :thanks
+        #format.html { redirect_to(:thanks, :notice => 'Sign up was successful.') }
+        redirect_to :thanks
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @sign_up.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  def thanks
+    format.html # index.html.erb
   end
 
   # DELETE /sign_ups/1

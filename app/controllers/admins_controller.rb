@@ -1,8 +1,9 @@
-class AdminsController < ApplicationController
+class AdminsController < ApplicationController  
+  # skip_before_filter :authorize
   # GET /admins
   # GET /admins.xml
   def index
-    @admins = Admin.all
+    @admins = Admin.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +45,7 @@ class AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.save
-        format.html { redirect_to(@admin, :notice => 'Admin was successfully created.') }
+        format.html { redirect_to(admins_url, :notice => "Admin #{@admin.name} was successfully created.") }
         format.xml  { render :xml => @admin, :status => :created, :location => @admin }
       else
         format.html { render :action => "new" }
@@ -60,7 +61,7 @@ class AdminsController < ApplicationController
 
     respond_to do |format|
       if @admin.update_attributes(params[:admin])
-        format.html { redirect_to(@admin, :notice => 'Admin was successfully updated.') }
+        format.html { redirect_to(admins_url, :notice => "Admin #{@admin.name} was successfully updated.") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -73,7 +74,12 @@ class AdminsController < ApplicationController
   # DELETE /admins/1.xml
   def destroy
     @admin = Admin.find(params[:id])
-    @admin.destroy
+    begin
+      @admin.destroy
+      flash[:notice] = "Admin #{@admin.name} deleted"
+    rescue Exception => e
+      flash[:notice] = e.message
+    end
 
     respond_to do |format|
       format.html { redirect_to(admins_url) }

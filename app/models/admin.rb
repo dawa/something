@@ -3,7 +3,7 @@ require 'digest/sha2'
 class Admin < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
  
-  validates :password, :confirmation => true
+  validates :password, :presence => true, :confirmation => true
   attr_accessor :password_confirmation
   attr_reader   :password
 
@@ -31,6 +31,14 @@ class Admin < ActiveRecord::Base
     end
   end
   
+  after_destroy :ensure_an_admin_remains
+
+  def ensure_an_admin_remains
+    if Admin.count.zero?
+      raise "Can't delete last admin"
+    end
+  end     
+
   private
 
     def password_must_be_present
