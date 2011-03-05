@@ -34,9 +34,11 @@ class SignUpsController < ApplicationController
   end
   
   def thanks
-    #format.html # index.html.erb
   end
 
+  def alpha_sent
+  end
+  
   # DELETE /sign_ups/1
   # DELETE /sign_ups/1.xml
   def destroy
@@ -46,6 +48,30 @@ class SignUpsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(sign_ups_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def notify?
+    @sign_up = SignUp.find(params[:id])
+	return @sign_up.notified==0
+  end
+  
+  def notify_alpha
+    @sign_up = SignUp.find(params[:id])
+	
+	Notifier.email_alpha(@sign_up).deliver
+    
+	#Assumming email was successfully sent so can update user state
+	@sign_up.notified = 1
+
+	respond_to do |format|
+      if @sign_up.save
+	    format.html { render :action => "alpha_sent", :notice => "Successfully sent notice to alpha user" }
+        format.xml  { head :ok }
+	  else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @sign_up.errors, :status => :unprocessable_entity }
+      end
     end
   end
 end

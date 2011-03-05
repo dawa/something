@@ -12,10 +12,16 @@ ComingSoon::Application.routes.draw do
   
   resources :admins
 
-  resources :sign_ups
+  resources :sign_ups do
+    member do
+	  get :notify_alpha
+	end
+  end
   
   match "thanks" => "signUp#thanks"
-  
+     
+  match "alpha_sent" => "signUp#alpha_sent"
+
   get 'admin' => 'admin#index'
   
   # The priority is based upon order of creation:

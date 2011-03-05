@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110303232546) do
+ActiveRecord::Schema.define(:version => 20110304195502) do
 
   create_table "admins", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20110303232546) do
     t.string   "ip_address"
     t.string   "user_agent"
     t.string   "referer"
+    t.integer  "notified"
   end
 
 end

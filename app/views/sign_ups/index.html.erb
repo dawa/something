@@ -1,9 +1,13 @@
-<h1>Listing sign_ups</h1>
+<h1>Sign ups for flickme alpha</h1>
 
 <table>
   <tr>
     <th>Email</th>
-    <th></th>
+    <th>IP Address</th>
+    <th>Browser</th>
+    <th>Referer</th>
+	<th>Date</th>
+	<th></th>
     <th></th>
     <th></th>
   </tr>
@@ -11,6 +15,11 @@
 <% @sign_ups.each do |sign_up| %>
   <tr>
     <td><%= sign_up.email %></td>
+    <td><%= sign_up.ip_address %></td>
+	<td><%= sign_up.user_agent %></td>
+    <td><%= sign_up.referer %></td>
+    <td><%= sign_up.created_at %></td>		
+	<td><%= link_to_if sign_up.notified.nil?, "Notify", notify_alpha_sign_up_path(sign_up) %></td>
     <td><%= link_to 'Destroy', sign_up, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
