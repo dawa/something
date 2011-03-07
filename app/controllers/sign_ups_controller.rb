@@ -13,7 +13,7 @@ class SignUpsController < ApplicationController
   def new
     @sign_up = SignUp.new
 	@sign_up.ip_address = request.remote_ip
-    @sign_up.user_agent = request.env["HTTP__AGENT"]
+    @sign_up.user_agent = request.env['HTTP_USER_AGENT']
     @sign_up.referer = @referer
   end
 
