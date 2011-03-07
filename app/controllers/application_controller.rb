@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :authorize
   protect_from_forgery
+  helper_method :current_admin
   
   protected
 
@@ -10,4 +11,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
+  private
+  
+	def current_admin
+	  @current_admin ||= Admin.find_by_id(session[:admin_id]) if session[:admin_id]
+	end
 end

@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController  
-  # skip_before_filter :authorize
+  skip_before_filter :authorize, :only => [:new, :create]
+  
   # GET /admins
   # GET /admins.xml
   def index
