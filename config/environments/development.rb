@@ -15,8 +15,21 @@ ComingSoon::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  
+  # Gmail SMTP server setup
+  ActionMailer::Base.smtp_settings = {
+	:address => "smtp.gmail.com",
+	:enable_starttls_auto => true,
+	:port => 587,
+	:authentication => :plain,
+	:user_name => "davis@flickme.com",
+	:password => 'NotCheckedIn'
+  }
+  #ActionMailer::Base.delivery_method = :sendmail;
 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
