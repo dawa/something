@@ -12,15 +12,16 @@ class SignUpsController < ApplicationController
   # GET /sign_ups/new.xml
   def new
     @sign_up = SignUp.new
-	@sign_up.ip_address = request.remote_ip
-    @sign_up.user_agent = request.env['HTTP_USER_AGENT']
-    @sign_up.referer = @referer
   end
 
   # POST /sign_ups
   # POST /sign_ups.xml
   def create
     @sign_up = SignUp.new(params[:sign_up])
+	@referer ||= request.env['HTTP_REFERER']
+	@sign_up.ip_address = request.remote_ip
+    @sign_up.user_agent = request.env['HTTP_USER_AGENT']
+    @sign_up.referer = @referer
 
     respond_to do |format|
       if @sign_up.save
