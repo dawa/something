@@ -1,8 +1,9 @@
 # Be sure to restart your server when you modify this file.
 
-ComingSoon::Application.config.session_store :cookie_store, :key => '_coming-soon_session'
+# ComingSoon::Application.config.session_store :cookie_store, :key => '_coming-soon_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-# ComingSoon::Application.config.session_store :active_record_store
+
+ComingSoon::Application.config.session_store :active_record_store

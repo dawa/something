@@ -23,7 +23,7 @@ class AdminsControllerTest < ActionController::TestCase
 
   test "should create admin" do
     assert_difference('Admin.count') do
-      post :create, :admin => @admin.attributes
+      post :create, :admin => @input_attributes
     end
 
     assert_redirected_to admin_path(assigns(:admin))
@@ -40,8 +40,8 @@ class AdminsControllerTest < ActionController::TestCase
   end
 
   test "should update admin" do
-    put :update, :id => @admin.to_param, :admin => @admin.attributes
-    assert_redirected_to admin_path(assigns(:admin))
+    put :update, :id => @admin.to_param, :admin => @input_attributes
+    assert_redirected_to admin_path
   end
 
   test "should destroy admin" do

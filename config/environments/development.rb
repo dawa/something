@@ -24,7 +24,7 @@ ComingSoon::Application.configure do
 	:port => 587,
 	:authentication => :plain,
 	:user_name => "davis@flickme.com",
-	:password => 'Alicia!23'
+	:password => 'NotCheckedIn'
   }
   #ActionMailer::Base.delivery_method = :sendmail;
 

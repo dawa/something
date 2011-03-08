@@ -5,7 +5,8 @@ class AdminsController < ApplicationController
   # GET /admins.xml
   def index
     @admins = Admin.order(:name)
-
+	@total_sign_ups= SignUp.count
+	
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @admins }

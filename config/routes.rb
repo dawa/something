@@ -22,8 +22,6 @@ ComingSoon::Application.routes.draw do
      
   match "alpha_sent" => "signUp#alpha_sent"
 
-  get 'admin' => 'admin#index'
-  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
